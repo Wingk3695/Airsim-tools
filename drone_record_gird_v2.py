@@ -2,7 +2,7 @@ from cmath import pi
 from random import randint,uniform,choice
 from re import U
 from turtle import position
-import setup_path
+# import setup_path
 import airsim
 
 import numpy as np
@@ -13,17 +13,17 @@ import tempfile
 import pprint
 import cv2, math
 import matplotlib.pyplot as plt
-from utils import get_state, quaternion_rotation_matrix, distance
-from depth2PointCloud import depth2PointCloud
-from occupancy_grid import Map
-from bresenhan_nd import bresenhamline
-from RRT3d import rrt3d
+# from utils import get_state, quaternion_rotation_matrix, distance
+# from depth2PointCloud import depth2PointCloud
+# from occupancy_grid import Map
+# from bresenhan_nd import bresenhamline
+# from RRT3d import rrt3d
 # import pymap3d as pm3d
 from scipy.spatial.transform import Rotation
 from airsim.types import GeoPoint
 import argparse
-from segmentation import set_segmentation_color
-from bresenhan_nd import bresenhamline
+# from segmentation import set_segmentation_color
+# from bresenhan_nd import bresenhamline
 from record_grid_v2 import record, make_record_dir
 from sympy import *
 from utils_grid import load_config

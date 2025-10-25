@@ -14,9 +14,36 @@ class MsgpackMixin:
     @classmethod
     def from_msgpack(cls, encoded):
         obj = cls()
-        #obj.__dict__ = {k.decode('utf-8'): (from_msgpack(v.__class__, v) if hasattr(v, "__dict__") else v) for k, v in encoded.items()}
-        obj.__dict__ = { k : (v if not isinstance(v, dict) else getattr(getattr(obj, k).__class__, "from_msgpack")(v)) for k, v in encoded.items()}
-        #return cls(**msgpack.unpack(encoded))
+        if not isinstance(encoded, dict):
+            obj.__dict__ = encoded
+            return obj
+
+        decoded = {}
+        for k, v in encoded.items():
+            # 把 bytes 键解码为 str，兼容 msgpack 在 Python3 下返回 bytes key 的情况
+            if isinstance(k, bytes):
+                try:
+                    k = k.decode('utf-8')
+                except Exception:
+                    k = str(k)
+
+            # 处理嵌套的 dict：如果目标属性存在并且有 from_msgpack 方法，就调用它进行解析
+            if isinstance(v, dict):
+                attr = getattr(obj, k, None)
+                if attr is not None:
+                    attr_cls = getattr(attr, "__class__", None)
+                    if attr_cls is not None and hasattr(attr_cls, "from_msgpack"):
+                        try:
+                            decoded[k] = getattr(attr_cls, "from_msgpack")(v)
+                            continue
+                        except Exception:
+                            pass
+                # 回退：保留原始 dict（或可选择递归解码）
+                decoded[k] = v
+            else:
+                decoded[k] = v
+
+        obj.__dict__ = decoded
         return obj
 
 class _ImageType(type):

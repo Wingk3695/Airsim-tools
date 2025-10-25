@@ -24,7 +24,7 @@ from airsim.types import GeoPoint
 import argparse
 # from segmentation import set_segmentation_color
 # from bresenhan_nd import bresenhamline
-from record_grid_v2 import record, make_record_dir
+from record_grid import record, make_record_dir
 from sympy import *
 from utils_grid import load_config
 
@@ -77,7 +77,7 @@ def write_line(client,drone_ned1,drone_ned2):
     #                         is_persistent=True)
     
 # def record_by_Yaw(client, record_dir, z_distance):
-def record_by_Yaw(client, record_dir, z_distance,weather_record):
+def record_by_Yaw(client, record_dir, z_distance,weather_record, id):
     # try:
     # if "_weather_random" in record_dir:
     #     weather, weather_str, weather_degree = reset_weather(client)
@@ -97,7 +97,7 @@ def record_by_Yaw(client, record_dir, z_distance,weather_record):
     # client.moveByAngleRatesZAsync(0, 0, 45, 0, record_times)
     # client.moveToPositionAsync(path[i][0], path[i][1], path[i][2], velocity, drivetrain=drivetrain, yaw_mode=yaw_mode)
     # record(client, record_times, record_dir, weather_record)
-    record(client, record_dir, weather_record, z_distance)
+    record(client, record_dir, weather_record, z_distance, id)
     # #清除天气，避免叠加
     # client.simSetWeatherParameter(weather, 0.0)
     # except:
@@ -176,6 +176,7 @@ def main(record_dir,x_distance_max,y_distance_max,z_distance_max,totalframes):
     y_single_circle = int(y_circle/2)
     # x_single_circle = round(x_circle/2)
     # y_single_circle = round(y_circle/2)
+    id = 0
     for z_count in range(3):
         for x_count in range(-x_single_circle+1,x_single_circle):
             for y_count in range(-y_single_circle+1,y_single_circle):
@@ -212,12 +213,13 @@ def main(record_dir,x_distance_max,y_distance_max,z_distance_max,totalframes):
                     yaw_degree = 45*i
                     reset_drone(client,x_distance,y_distance,z_distance,yaw_degree) 
                     n,e,d = get_cur_position(client) # get status information 
-                    collision = client.simGetCollisionInfo().has_collided # get status information 
+                    # collision = client.simGetCollisionInfo().has_collided # get status information 
                     print('current position:', '%.2f' % n, '%.2f' % e, '%.2f' % d)
-                    print('current collision:', collision)
+                    # print('current collision:', collision)
                     # 开始采集
                     # record_by_Yaw(client, record_dir, z_distance)
-                    record_by_Yaw(client, record_dir, z_distance,weather_record)
+                    record_by_Yaw(client, record_dir, z_distance, weather_record, id)
+                    id += 1
                 #清除天气，避免叠加
                 client.simSetWeatherParameter(weather, 0.0)
     # release the drone
@@ -228,7 +230,7 @@ def main(record_dir,x_distance_max,y_distance_max,z_distance_max,totalframes):
 if __name__ == "__main__":
     #每个场景一个目录，不同的场景不能共用一个目录
     mapname = "Sci-fiRoomsandCorridors"
-    data_path = "D:\\AirSim\\PythonClient_pano\\airsim_data_pipeline\\output"
+    data_path = r"output"
     data_dir = os.path.join(data_path, mapname)
 
     config_dir = "./"
@@ -237,9 +239,9 @@ if __name__ == "__main__":
     # x_distance_max = 100
     # y_distance_max = 100
     # z_distance_max = 15
-    x_distance_max = int(input_config[mapname][0][1])
-    y_distance_max = int(input_config[mapname][1][1])
-    z_distance_max = int(input_config[mapname][2][1])
+    x_distance_max = int(input_config[mapname]['x'])
+    y_distance_max = int(input_config[mapname]['y'])
+    z_distance_max = int(input_config[mapname]['z'])
     # 总帧数
     totalframes= 2000
     for i in range(2):

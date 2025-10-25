@@ -1,0 +1,93 @@
+{
+  "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
+  "SettingsVersion": 1.2,
+  "SimMode": "ComputerVision",
+  "SubWindows": [
+    {"WindowID": 0, "ImageType": 0, "CameraName": "left", "Visible": true},
+    {"WindowID": 1, "ImageType": 5, "CameraName": "left", "Visible": true},
+    {"WindowID": 2, "ImageType": 3, "CameraName": "left","Visible": true}
+  ],  
+  "Recording": {
+    "RecordOnMove": false,
+    "RecordInterval": 1.0,
+    "Folder": "D:\\AirSim\\data",
+    "Enabled": false,
+    "Cameras": [
+      {"ImageType": 8, "CameraName": "cube_front", "PixelsAsFloat": false,  "VehicleName": "drone", "Compress": true},
+      {"ImageType": 8, "CameraName": "cube_rear", "PixelsAsFloat": false,  "VehicleName": "drone", "Compress": true},
+      {"ImageType": 9, "CameraName": "cube_front", "PixelsAsFloat": true,  "VehicleName": "drone", "Compress": false},
+      {"ImageType": 9, "CameraName": "cube_rear", "PixelsAsFloat": true,  "VehicleName": "drone", "Compress": false},
+      {"ImageType": 10, "CameraName": "cube_front", "PixelsAsFloat": true,  "VehicleName": "drone", "Compress": false},
+      {"ImageType": 10, "CameraName": "cube_rear", "PixelsAsFloat": true,  "VehicleName": "drone", "Compress": false}
+    ]
+  },
+  "CameraDefaults": {
+    "CaptureSettings": [
+      {
+        "ImageType": 8,
+        "Width": 1280,
+        "Height": 2560
+      },
+      {
+        "ImageType": 9,
+        "Width": 1280,
+        "Height": 2560
+      },
+      {
+        "ImageType": 10,
+        "Width": 1280,
+        "Height": 2560
+      }
+    ]
+  },
+  "Vehicles": {
+    "drone":{
+      "VehicleType":"ComputerVision",
+      "AllowAPIAlways": true,
+      "Cameras":{
+        "cube_front": {
+          "CaptureSettings": [
+            {
+              "ImageType": 8,
+              "Width": 1280,
+              "Height": 2560
+            },
+            {
+              "ImageType": 9,
+              "Width": 1280,
+              "Height": 2560
+            },
+            {
+              "ImageType": 10,
+              "Width": 1280,
+              "Height": 2560
+            }
+          ],
+          "X": 0.045, "Y": 0.0, "Z": 0.0,
+          "Pitch": 90.0, "Roll": 0.0, "Yaw": 180.0
+        },
+        "cube_rear": {
+          "CaptureSettings": [
+            {
+              "ImageType": 8,
+              "Width": 1280,
+              "Height": 2560
+            },
+            {
+              "ImageType": 9,
+              "Width": 1280,
+              "Height": 2560
+            },
+            {
+              "ImageType": 10,
+              "Width": 1280,
+              "Height": 2560
+            }
+          ],
+          "X": -0.045, "Y": 0.0, "Z": 0.0,
+          "Pitch": 90.0, "Roll": 0.0, "Yaw": 180.0
+        }
+      }
+    }
+  }
+}

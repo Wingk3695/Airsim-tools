@@ -1,0 +1,91 @@
+{
+    "SimMode": "ComputerVision",
+    "Vehicles": {
+    "drone":{
+      "VehicleType":"ComputerVision",
+      "AllowAPIAlways": true,
+      "Cameras":{
+        "cube_LT": {
+          "CaptureSettings": [
+            {
+              "ImageType": 8,
+              "Width": 1280,
+              "Height": 2560
+            },
+            {
+              "ImageType": 9,
+              "Width": 1280,
+              "Height": 2560
+            }
+          ],
+          "X": 0.0, "Y": 0.0, "Z": 0.0,
+          "Pitch": 0.0, "Roll": 0.0, "Yaw": 0.0
+        },
+        "cube_RT": {
+          "CaptureSettings": [
+            {
+              "ImageType": 8,
+              "Width": 1280,
+              "Height": 2560
+            },
+            {
+              "ImageType": 9,
+              "Width": 1280,
+              "Height": 2560
+            }
+          ],
+          "X": 0.1, "Y": 0.0, "Z": 0.0,
+          "Pitch": 0.0, "Roll": 0.0, "Yaw": 0.0
+        },
+        "cube_LB": {
+          "CaptureSettings": [
+            {
+              "ImageType": 8,
+              "Width": 1280,
+              "Height": 2560
+            },
+            {
+              "ImageType": 9,
+              "Width": 1280,
+              "Height": 2560
+            }
+          ],
+          "X": 0.0, "Y": 0.1, "Z": 0.0,
+          "Pitch": 0.0, "Roll": 0.0, "Yaw": 0.0
+        },
+        "cube_RB": {
+          "CaptureSettings": [
+            {
+              "ImageType": 8,
+              "Width": 1280,
+              "Height": 2560
+            },
+            {
+              "ImageType": 9,
+              "Width": 1280,
+              "Height": 2560
+            }
+          ],
+          "X": 0.1, "Y": 0.1, "Z": 0.0,
+          "Pitch": 0.0, "Roll": 0.0, "Yaw": 0.0
+        },
+        "cube_Center": {
+          "CaptureSettings": [
+            {
+              "ImageType": 8,
+              "Width": 1280,
+              "Height": 2560
+            },
+            {
+              "ImageType": 9,
+              "Width": 1280,
+              "Height": 2560
+            }
+          ],
+          "X": 0.05, "Y": 0.05, "Z": 0.0,
+          "Pitch": 0.0, "Roll": 0.0, "Yaw": 0.0
+        }
+      }
+    }
+  }
+}

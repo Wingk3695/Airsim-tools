@@ -1,2 +1,8 @@
 .vscode
 __pycache__
+20211116_nearest
+
+*.png
+*.npz
+
+output
